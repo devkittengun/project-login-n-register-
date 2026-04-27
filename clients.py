@@ -6,14 +6,14 @@ def init_db():
 
 	cur.execute('''
 		CREATE TABLE IF NOT EXISTS clients (
-				username TEXT PRIMARY KEY NOT NULL,
+				username TEXT UNIQUE NOT NULL,
 				password TEXT NOT NULL,
 				firstname TEXT NOT NULL,
 				lastname TEXT NOT NULL,
 				patronym TEXT,
 				birthdate DATE NOT NULL,
-				phonenum INTEGER NOT NULL,
-				email TEXT
+				phonenum INTEGER UNIQUE NOT NULL,
+				email TEXT UNIQUE
 			)
 		''')
 	conn.commit()
