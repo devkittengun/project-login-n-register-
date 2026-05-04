@@ -10,7 +10,7 @@ init_db()
 root = tk.Tk()
 root.title("Login Form")
 root.geometry("350x300")
-root.config(bg="#f0f0f0")
+root.config(bg="#9FA881")
 root.resizable(False,False)
 
 #login info
@@ -41,18 +41,11 @@ def open_register_window():
 	reg_window = Toplevel(root)
 	reg_window.title("Register Form")
 	reg_window.geometry("350x570")
-	reg_window.config(bg="#f0f0f0")
+	reg_window.config(bg="#434D20")
 	reg_window.resizable(False,False)
 	#title
-	tk.Label(reg_window, text="Register", font=("Arial", 19, "bold"), bg='#f0f0f0').pack(pady=10)
+	tk.Label(reg_window, text="Register", foreground='white', font=("Rockwell Extra Bold", 19, "bold"), bg='#E9839D', ).pack(pady=10)
 
-
-
-	# def toggle_password():
-	# 	if show_password.get():
-	# 		password_entry.config(show="")
-	# 	else:
-	# 		password_entry.config(show="*")
 
 	def register():
 		regex_email = r'^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$'
@@ -80,7 +73,7 @@ def open_register_window():
 
 
 	#username
-	tk.Label(reg_window, text="Username", bg='#f0f0f0').pack(anchor="w", padx=30)
+	tk.Label(reg_window, text="Username", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
 	tk.Entry(reg_window, textvariable=username_var, width=30).pack(pady=2)
 
 	def validate_phone(phone):
@@ -91,45 +84,44 @@ def open_register_window():
 	vcmd = reg_window.register(validate_phone)
 
 	#password
-	tk.Label(reg_window, text="Password", bg='#f0f0f0').pack(anchor="w", padx=30)
+	tk.Label(reg_window, text="Password", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
 	password_entry_reg = tk.Entry(reg_window, textvariable=password_var, show="*", width=30)
 	password_entry_reg.pack(pady=2)
 
-	#show password checkbox
-	tk.Checkbutton(reg_window, text="Show Password", variable=show_password, bg="#f0f0f0", command=toggle_password)
-	toggle_btn_pas.pack(anchor="w", padx=30, pady=5)
-
 	#first name
-	tk.Label(reg_window, text="First name", bg='#f0f0f0').pack(anchor="w", padx=30)
+	tk.Label(reg_window, text="First name", foreground='white', font=("Copperplate Gothic Light", 10),  bg='#434D20').pack(anchor="w", padx=30)
 	tk.Entry(reg_window, textvariable=firstname_var, width=30).pack(pady=2)
 
 	#last name
-	tk.Label(reg_window, text="Last name", bg='#f0f0f0').pack(anchor="w", padx=30)
+	tk.Label(reg_window, text="Last name", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
 	tk.Entry(reg_window, textvariable=lastname_var, width=30).pack(pady=2)
 
 	#patronym
-	tk.Label(reg_window, text="Patronym", bg='#f0f0f0').pack(anchor="w", padx=30)
+	tk.Label(reg_window, text="Patronym", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
 	tk.Entry(reg_window, textvariable=patronym_var, width=30).pack(pady=2)
 
 	#date of birth
-	tk.Label(reg_window, text="Date of birth | Example: DD/MM/YYYY (21/03/2004)", bg='#f0f0f0').pack(anchor="w", padx=30)
+	tk.Label(reg_window, text="Date of birth | DD/MM/YYYY", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
 	tk.Entry(reg_window, textvariable=birthdate_var, width=30).pack(pady=2)
 
 	# phone number
-	tk.Label(reg_window, text="Phone number | Example: 79953849927", bg='#f0f0f0').pack(anchor="w", padx=30)
+	tk.Label(reg_window, text="Phone number | Example: 79953849927", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
 	phonenum_entry = tk.Entry(reg_window, textvariable=phonenum_var, validate="key", validatecommand=(vcmd, '%P'), width=30)
 	phonenum_entry.pack(pady=2)
 
+
+
+
 	# email
-	tk.Label(reg_window, text="Email", bg='#f0f0f0').pack(anchor="w", padx=30)
+	tk.Label(reg_window, text="Email", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
 	tk.Entry(reg_window, textvariable=email_var, width=30).pack(pady=2)
 
 	#newsletter
-	tk.Checkbutton(reg_window, text="Subscribe to our newsletter", variable=newsletter_var, bg="#f0f0f0")
+	remember_cb = tk.Checkbutton(reg_window, text="Subscribe to our newsletter", font=("Copperplate Gothic Light", 10), variable=newsletter_var, bg="#434D20", fg="#E9839D")
 	remember_cb.pack(anchor="w", padx=30)
 
 	#reg button
-	tk.Button(reg_window, text="Register", command=register, width=25, bg="#2196f3", fg = "white").pack(pady=8)
+	tk.Button(reg_window, text="Register", command=register, width=25, font=("Copperplate Gothic Light", 10), bg="#E9839D", fg = "white").pack(pady=8)
 
 
 
@@ -141,28 +133,28 @@ def toggle_password():
 
 
 #title
-tk.Label(root, text="Login", font=("Arial", 19, "bold"), bg='#f0f0f0').pack(pady=10)
+tk.Label(root, text="Login", foreground='#E9839D', font=("Rockwell Extra Bold", 19, "bold"), bg='white').pack(pady=10)
 
 #username
-tk.Label(root, text="Username", bg='#f0f0f0').pack(anchor="w", padx=30)
+tk.Label(root, text="Username", foreground='white', font=("Copperplate Gothic Light", 10), bg='#9FA881').pack(anchor="w", padx=30)
 tk.Entry(root, textvariable=username_var, width=30).pack(pady=2)
 
 #password
-tk.Label(root, text="Password", bg='#f0f0f0').pack(anchor="w", padx=30)
+tk.Label(root, text="Password", foreground='white', font=("Copperplate Gothic Light", 10), bg='#9FA881').pack(anchor="w", padx=30)
 password_entry = tk.Entry(root, textvariable=password_var, show="*", width=30)
 password_entry.pack(pady=2)
 
 #show password checkbox
-toggle_btn_pas = tk.Checkbutton(root, text="Show Password", variable=show_password, bg="#f0f0f0", command=toggle_password)
+toggle_btn_pas = tk.Checkbutton(root, text="Show Password", foreground='#434D20', font=("Copperplate Gothic Light", 10), variable=show_password, bg="#9FA881", command=toggle_password)
 toggle_btn_pas.pack(anchor="w", padx=30, pady=5)
 
 #remember me thing
-remember_cb = tk.Checkbutton(root, text="Remember me", variable=remember_me, bg="#f0f0f0")
+remember_cb = tk.Checkbutton(root, text="Remember me", foreground='#434D20', font=("Copperplate Gothic Light", 10), variable=remember_me, bg="#9FA881")
 remember_cb.pack(anchor="w", padx=30)
 
 #login n reg buttons
-tk.Button(root, text="Login", command=login, width=25, bg="#4caf50", fg = "white").pack(pady=8)
-tk.Button(root, text="Register", command=open_register_window, width=25, bg="#2196f3", fg = "white").pack(pady=8)
+tk.Button(root, text="Login", command=login, width=25, bg="#E9839D", font=("Copperplate Gothic Light", 10), fg = "white").pack(pady=8)
+tk.Button(root, text="Register", command=open_register_window, width=25, bg="#434D20", font=("Copperplate Gothic Light", 10), fg = "white").pack(pady=8)
 
 
 root.mainloop()
