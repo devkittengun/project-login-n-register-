@@ -7,11 +7,61 @@ from clients import init_db, add_client, validate_client
 init_db()
 
 
+
 root = tk.Tk()
 root.title("Login Form")
 root.geometry("350x300")
 root.config(bg="#9FA881")
 root.resizable(False,False)
+
+#char limiters !!!
+def validate_16(P):
+	if len(P) == 0:
+		return True
+	elif len(P) <= 16:
+		return True
+	else:
+		return False
+
+def validate_20(P):
+	if len(P) == 0:
+		return True
+	elif len(P) <= 20:
+		return True
+	else:
+		return False
+
+def validate_30(P):
+	if len(P) == 0:
+		return True
+	elif len(P) <= 30:
+		return True
+	else:
+		return False
+
+def validate_10(P):
+	if len(P) == 0:
+		return True
+	elif len(P) <= 10:
+		return True
+	else:
+		return False
+
+def validate_11(P):
+	if len(P) == 0:
+		return True
+	elif len(P) <= 11:
+		return True
+	else:
+		return False
+
+def validate_45(P):
+	if len(P) == 0:
+		return True
+	elif len(P) <= 45:
+		return True
+	else:
+		return False
 
 #login info
 username_var = tk.StringVar()
@@ -28,6 +78,13 @@ phonenum_var = tk.StringVar()
 email_var = tk.StringVar()
 newsletter_var = tk.BooleanVar(value=True)
 
+# vcmd
+vcmd_16 = (root.register(validate_16), '%P')
+vcmd_20 = (root.register(validate_20), '%P')
+vcmd_30 = (root.register(validate_30), '%P')
+vcmd_10 = (root.register(validate_10), '%P')
+vcmd_11 = (root.register(validate_11), '%P')
+vcmd_45 = (root.register(validate_45), '%P')
 
 #help menu
 menu = tk.Menu(root)
@@ -104,39 +161,43 @@ def open_register_window():
 
 	#username
 	tk.Label(reg_window, text="Username", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
-	username_entry_reg = (tk.Entry(reg_window, textvariable=username_var, width=30, cursor="target"))
+	username_entry_reg = (tk.Entry(reg_window, validate="key", validatecommand=vcmd_16, textvariable=username_var, width=30, cursor="target"))
 	username_entry_reg.pack(pady=2)
 
-	def validate_phone(phone):
-		if phone.isdigit() or phone == "":
+
+	def validate_phone(P):
+		if len(P) == '' and P.isdigit() or P == '':
 			return True
-		return False
+		elif len(P) <= 11 and P.isdigit() or P == '':
+			return True
+		else:
+			return False
 
 	vcmd = reg_window.register(validate_phone)
 
 	#password
 	tk.Label(reg_window, text="Password", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
-	password_entry_reg = tk.Entry(reg_window, textvariable=password_var, show="*", width=30, cursor="target")
+	password_entry_reg = tk.Entry(reg_window, validate="key", validatecommand=vcmd_20, textvariable=password_var, show="*", width=30, cursor="target")
 	password_entry_reg.pack(pady=2)
 
 	#first name
 	tk.Label(reg_window, text="First name", foreground='white', font=("Copperplate Gothic Light", 10),  bg='#434D20').pack(anchor="w", padx=30)
-	fn_entr = tk.Entry(reg_window, textvariable=firstname_var, width=30, cursor="target")
+	fn_entr = tk.Entry(reg_window, validate="key", validatecommand=vcmd_30, textvariable=firstname_var, width=30, cursor="target")
 	fn_entr.pack(pady=2)
 
 	#last name
 	tk.Label(reg_window, text="Last name", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
-	ln_entr = tk.Entry(reg_window, textvariable=lastname_var, width=30, cursor="target")
+	ln_entr = tk.Entry(reg_window, validate="key", validatecommand=vcmd_30, textvariable=lastname_var, width=30, cursor="target")
 	ln_entr.pack(pady=2)
 
 	#patronym
 	tk.Label(reg_window, text="Patronym", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
-	ptr_entr = tk.Entry(reg_window, textvariable=patronym_var, width=30, cursor="target")
+	ptr_entr = tk.Entry(reg_window, validate="key", validatecommand=vcmd_30, textvariable=patronym_var, width=30, cursor="target")
 	ptr_entr.pack(pady=2)
 
 	#date of birth
 	tk.Label(reg_window, text="Date of birth | DD/MM/YYYY", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
-	dateofbirth_entr = tk.Entry(reg_window, textvariable=birthdate_var, width=30, cursor="target")
+	dateofbirth_entr = tk.Entry(reg_window, validate="key", validatecommand=vcmd_10, textvariable=birthdate_var, width=30, cursor="target")
 	dateofbirth_entr.pack(pady=2)
 
 	# phone number
@@ -146,7 +207,7 @@ def open_register_window():
 
 	# email
 	tk.Label(reg_window, text="Email", foreground='white', font=("Copperplate Gothic Light", 10), bg='#434D20').pack(anchor="w", padx=30)
-	email_entr = tk.Entry(reg_window, textvariable=email_var, width=30, cursor="target")
+	email_entr = tk.Entry(reg_window, validate="key", validatecommand=vcmd_45, textvariable=email_var, width=30, cursor="target")
 	email_entr.pack(pady=2)
 
 	#newsletter
@@ -170,12 +231,12 @@ tk.Label(root, text="Login", foreground='#E9839D', font=("Rockwell Extra Bold", 
 
 #username
 tk.Label(root, text="Username", foreground='white', font=("Copperplate Gothic Light", 10), bg='#9FA881').pack(anchor="w", padx=30)
-username_entry = tk.Entry(root, textvariable=username_var, width=30, cursor="target")
+username_entry = tk.Entry(root, validate="key", validatecommand=vcmd_16, textvariable=username_var, width=30, cursor="target")
 username_entry.pack(pady=2)
 
 #password
 tk.Label(root, text="Password", foreground='white', font=("Copperplate Gothic Light", 10), bg='#9FA881').pack(anchor="w", padx=30)
-password_entry = tk.Entry(root, textvariable=password_var, show="*", width=30, cursor="target")
+password_entry = tk.Entry(root, validate="key", validatecommand=vcmd_20, textvariable=password_var, show="*", width=30, cursor="target")
 password_entry.pack(pady=2)
 
 #show password checkbox
@@ -189,6 +250,7 @@ remember_cb.pack(anchor="w", padx=30)
 #login n reg buttons
 tk.Button(root, text="Login", command=login, width=25, bg="#E9839D", font=("Copperplate Gothic Light", 10), cursor="heart", fg = "white").pack(pady=8)
 tk.Button(root, text="Register", command=open_register_window, width=25, bg="#434D20", font=("Copperplate Gothic Light", 10), cursor="star", fg = "white").pack(pady=8)
+
 
 
 root.mainloop()
